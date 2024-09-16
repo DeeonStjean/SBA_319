@@ -16,7 +16,7 @@ const zipSchema = new mongoose.Schema({
         },
         x:{
             type:Number,
-            require
+            require:true
         }
     },
     pop:{

@@ -18,14 +18,6 @@ const zipSchema = new mongoose.Schema({
             type:Number,
             require:true
         }
-    },
-    pop:{
-        type: Number,
-        require: true,
-    },
-    state:{
-        type:String,
-        require:true
     }
 });
 export default mongoose.model('zips',zipSchema);

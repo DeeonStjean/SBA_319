@@ -20,4 +20,6 @@ const zipSchema = new mongoose.Schema({
         }
     }
 });
+zipSchema.index({zip: 1},{city: 1});
+mongoose.set('autoIndex', false);
 export default mongoose.model('zips',zipSchema);

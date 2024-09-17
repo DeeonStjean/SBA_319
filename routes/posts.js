@@ -1,5 +1,6 @@
 import express from "express";
 import POST from '../models/posts.js'
+import { ObjectId } from 'mongodb';
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.get('/', async (req, res) => {
     res.send(results).status(200);
 });
 
-//POST routes for post
+//pout route for post
 router.post("/", async (req,res) => {
     try {
         const result = await POST.create({
@@ -18,11 +19,22 @@ router.post("/", async (req,res) => {
             author: req.body.author, 
             title: req.body.title
         })
-    console.log(result)
-    res.send(result)
+    console.log(result);
+    res.send(result);
     } catch(e) {
-        console.log(e)
+        console.log(e);
     }
 });
 
+//delete route for post
+router.delete("/:id", async(req,res) =>{
+    try {
+       const query = { _id: new ObjectId(req.params.id)}
+       let result = await POST.deleteOne(query) ;
+       res.send(result).status(200);
+    } catch (e) {
+      console.log(e);
+      res.send(e).status(404);
+    }
+});
 export default router;
